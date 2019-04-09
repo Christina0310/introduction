@@ -1,6 +1,9 @@
 import pandas as pd #linear regression
 from sklearn.model_selection import train_test_split#_underscore: library-module;split: split data hold out method
 from sklearn import linear_model
+import matplotlib.pyplot as plt
+from sklearn import metrics
+
 
 dataset = pd.read_csv("dataset.csv")#default is true: title row
 
@@ -29,6 +32,19 @@ print(target_test.shape)
 
 linear_machine = linear_model.LinearRegression()#keep the machine
 linear_machine.fit (data_training, target_training)
-predict = linear_machine.predict(data_test)
+prediction = linear_machine.predict(data_test)#2500 result
 
-print(predict)
+print(prediction)
+
+plt.scatter(target_test, prediction)
+plt.xlabel('target test')
+plt.ylabel('prediction')
+
+plt.savefig('scatter_test_prediction.png')
+
+print(metrics.r2_score(target_test,prediction))
+
+
+
+
+
