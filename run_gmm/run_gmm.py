@@ -32,8 +32,27 @@ plt.savefig("scatter_kmean2.png")
 print("kmeans 2 clusters")
 print(metrics.silhouette_score(dataset,kmeans_predictions2))'''
 
-gaussian_predictions3 = GaussianMixture(n_components = 3).fit(dataset).predict(dataset)
+for i in range(4):
+    n = i+2
+    print(n)
+    kmeans_predictions = KMeans(n_clusters = n).fit_predict(dataset)# unsuvervised can combine predict at once after
+    plt.scatter(dataset[0],dataset[1], c= kmeans_predictions)
+    plt.savefig("scatter_kmean"+str(n)+".png")
+    print("kmeans " + str(n) + " clusters")
+    print(metrics.silhouette_score(dataset,kmeans_predictions))
+
+'''gaussian_predictions3 = GaussianMixture(n_components = 3).fit(dataset).predict(dataset)
 plt.scatter(dataset[0],dataset[1], c = gaussian_predictions3)
 plt.savefig("scatter_gaussian3.png")
 print("gaussian 3 clusters")
 print(metrics.silhouette_score(dataset,gaussian_predictions3))
+'''
+
+for i in range(5):
+    n = i+2
+    print(n)
+    gaussian_predictions = GaussianMixture(n_components = n).fit(dataset).predict(dataset)#gausian do not fit_predict
+    plt.scatter(dataset[0],dataset[1], c = gaussian_predictions)
+    plt.savefig("scatter_gaussian" + str(n) + ".png")
+    print("gaussian " +str(n) + " clusters")
+    print(metrics.silhouette_score(dataset,gaussian_predictions))
