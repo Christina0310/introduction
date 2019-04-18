@@ -17,12 +17,12 @@ data = dataset.iloc[:,0:30]
 
 print(data.head())
 
-data_training, data_test, target_training, target_test = train_test_split(data, target, test_size= 0.2, random_state =1, )
+data_training, data_test, target_training, target_test = train_test_split(data, target, test_size= 0.2, random_state =1)
 
 print(data_training.head())
 print(data_test.head())
 
-decision_tree_machine = tree.DecisionTreeClassifier(criterion = "gini")# gini score for entropy measure 
+decision_tree_machine = tree.DecisionTreeClassifier(criterion = "gini", max_depth =10)# gini impurity for entropy measure; or "entropy"
 decision_tree_machine.fit(data_training, target_training)#random state for tree as well but not that differ
 
 predictions = decision_tree_machine.predict(data_test)
@@ -36,3 +36,5 @@ confusion_matrix = pd.DataFrame(
 	) #correctness and misses, find out too many prediction of 0
 
 print(confusion_matrix)
+
+print(dict(zip(data.columns, decision_tree_machine.feature_importances_)))#compare importance within;zip: print things pretty; dictionary
