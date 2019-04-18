@@ -22,7 +22,7 @@ data_training, data_test, target_training, target_test = train_test_split(data, 
 print(data_training.head())
 print(data_test.head())
 
-decision_tree_machine = tree.DecisionTreeClassifier(criterion = "gini", max_depth =10)# gini impurity for entropy measure; or "entropy"
+decision_tree_machine = tree.DecisionTreeClassifier(criterion = "gini", max_depth =10)# gini impurity for entropy measure; or "entropy";depth: 10layers of tree
 decision_tree_machine.fit(data_training, target_training)#random state for tree as well but not that differ
 
 predictions = decision_tree_machine.predict(data_test)
